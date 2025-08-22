@@ -77,7 +77,6 @@ nav {
   margin: 0 auto;
   height: 60vh; /* 必要なら調整 */
   max-width: 100%;
-  height: auto;
   margin: 2rem;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);border-radius: 2rem;
   
@@ -88,7 +87,6 @@ nav {
   margin: 0 auto;
   height: 60vh; /* 必要なら調整 */
   max-width: 100%;
-  height: auto;
   margin: 2rem;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);border-radius: 2rem;
   
