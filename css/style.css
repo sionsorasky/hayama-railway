@@ -75,7 +75,7 @@ nav {
 .content img {
   display: block;
   margin: 0 auto;
-  width: 80vw; /* 必要なら調整 */
+  width: 60vw; /* 必要なら調整 */
   max-width: 100%;
   height: auto;
   margin: 2rem;
@@ -86,7 +86,7 @@ nav {
 .soica-img {
   display: block;
   margin: 0 auto;
-  width: 80vw; /* 必要なら調整 */
+  width: 60vw; /* 必要なら調整 */
   max-width: 100%;
   height: auto;
   margin: 2rem;
