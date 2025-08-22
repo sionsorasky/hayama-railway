@@ -10,3 +10,35 @@
   font-weight: <weight>;
   font-style: normal;
 }
+
+nav ul {
+  text-align: center;
+}
+
+nav li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin-top: 4em;
+  margin-bottom: 0.5em;
+}
+
+h2 {
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+
+header {
+  text-align: center;
+  height: 100vh;
+  background-image: url('images/image.png');
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1.2em;
+}
