@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hayama Soica残高確認</title>
+  <style>
+    /* ベースリセット */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f5f7fa;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: white;
+      max-width: 480px;
+      width: 100%;
+      border-radius: 12px;
+      padding: 30px 40px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .banner {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      display: block;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+
+    h1 {
+      margin-bottom: 24px;
+      font-weight: 700;
+      color: #222;
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    input[type="text"] {
+      flex-grow: 1;
+      font-size: 1.1rem;
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: 2px solid #ddd;
+      transition: border-color 0.3s ease;
+      outline-offset: 2px;
+    }
+
+    input[type="text"]:focus {
+      border-color: #0078D7;
+      box-shadow: 0 0 8px rgba(0,120,215,0.4);
+    }
+
+    button {
+      background-color: #0078D7;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      padding: 12px 24px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      flex-shrink: 0;
+      min-width: 100px;
+    }
+
+    button:hover,
+    button:focus {
+      background-color: #005a9e;
+    }
+
+    #result {
+      margin-top: 24px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #333;
+      min-height: 1.5em;
+      word-break: break-word;
+      text-align: center;
+    }
+
+    /* スマホ対応 */
+    @media (max-width: 400px) {
+      form {
+        flex-direction: column;
+      }
+      button {
+        min-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <img src="https://i.imgur.com/y2BB1np.png" alt="バナー" class="banner" />
+  <h1>Hayama Soica残高確認</h1>
+  <form id="searchForm">
+    <input type="text" id="inputB" placeholder="完全なユーザーIDを入力" autocomplete="off" />
+    <button type="submit" id="searchBtn">残高確認</button>
+  </form>
+  <div id="result"></div>
+</div>
+
+<script>
+  const searchForm = document.getElementById('searchForm');
+  const inputB = document.getElementById('inputB');
+  const resultDiv = document.getElementById('result');
+
+  searchForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const bValue = inputB.value.trim();
+    resultDiv.textContent = '';
+    if (!bValue) {
+      alert('正しい値を入力してください');
+      return;
+    }
+
+    resultDiv.textContent = '検索中...';
+
+    fetch(`https://script.google.com/macros/s/AKfycbzZ66QEJ_KrcOUlmdRvihSGqQ6s7vVzOOS9qBYCqpgyEVKx2vP61zPwDcsBoriloc4h/exec?b=${encodeURIComponent(bValue)}`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.result !== null) {
+          resultDiv.textContent = `あなたの残高: ${data.result}`;
+        } else {
+          resultDiv.textContent = 'まだ未参加かユーザーIDが間違っています';
+        }
+      })
+      .catch(err => {
+        resultDiv.textContent = 'エラーが発生しました';
+        console.error(err);
+      });
+  });
+</script>
+</body>
+</html>
