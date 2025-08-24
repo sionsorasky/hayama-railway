@@ -84,8 +84,9 @@ nav a {
 .soica-img {
   display: block;
   margin: 2rem auto;
-  height: 40vh;
-  max-width: 100%;
+  max-width: 70%;   /* PCでは大きめ表示 */
+  max-height: 80vh; /* 画面に収まるよう制限 */
+  height: auto;     /* 縦横比を維持 */
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
   border-radius: 2rem;
 }
@@ -148,12 +149,12 @@ footer {
 @media screen and (max-width: 768px) {
   /* 見出しを少し小さく */
   h1 {
-    font-size: 3rem;
-    padding-top: 2rem;
+    font-size: 2.2rem;  /* ← 今は3remだったのを小さく */
+    padding-top: 1.5rem;
   }
 
   h2 {
-    font-size: 1.8rem;
+    font-size: 1.4rem;  /* ← 今は1.8remを小さく */
   }
 
   /* ナビゲーションを縦並びに */
@@ -189,9 +190,10 @@ footer {
 
   .content img,
   .soica-img {
-    width: 100%;
-    height: auto;
-    max-width: 90%;
+    width: 100%;      /* 横幅いっぱい */
+    max-width: 90%;   /* 余白を少し残す */
+    height: auto;     /* 縦横比を維持 */
+    max-height: none; /* 高さ制限を解除 */
   }
 
   /* ボタンを押しやすく大きく */
