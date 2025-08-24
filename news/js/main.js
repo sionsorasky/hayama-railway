@@ -1,14 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const url = "https://script.google.com/macros/s/AKfycbwB3qVaTIyMkRfY0PJZ8N8TYz-YEJSEs-R_O4IpiWEdwuBSjpV5T82fwmFxxfRlVptG/exec"; // あなたのGASのURL
+  const url = "https://script.google.com/macros/s/AKfycbxaaDk2M9n3FTBhIBjWP7mpKV2KKNRlE6IzEGQTJBQR60eJF-RHcr__nsexrY-qDD4NKQ/exec"; // 例: https://script.google.com/macros/s/XXXX/exec
 
   fetch(url)
-    .then(res => res.json())
+    .then(response => response.json())
     .then(data => {
-      document.getElementById("news").textContent = data.news || "データがありません";
-      document.getElementById("news-user").textContent = data.user || "不明";
+      data.forEach((item, index) => {
+        const newsEl = document.getElementById(`news-${index + 1}`);
+        const userEl = document.getElementById(`news-user-${index + 1}`);
+        if (newsEl) newsEl.textContent = item.news;
+        if (userEl) userEl.textContent = item.user;
+      });
     })
     .catch(err => {
-      console.error(err);
-      document.getElementById("news").textContent = "エラーが発生しました";
+      console.error("データ取得エラー:", err);
     });
 });
